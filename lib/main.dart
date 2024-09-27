@@ -15,57 +15,95 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      debugShowCheckedModeBanner: false, // Menyembunyikan banner debug
-      home: const MyHomePage(),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pertemuan 2"),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Untuk mengatur agar kolom berada di tengah
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Mengatur jarak antar item di dalam Row
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              padding: const EdgeInsets.all(10),
               children: [
                 Container(
-                  width: 200,
-                  height: 200,
-                  margin: const EdgeInsets.all(10), // Menggunakan nilai tetap untuk margin
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  color: Colors.red,
+                  height: 250,
                 ),
                 Container(
-                  width: 200,
-                  height: 200,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                
-                  ),
+                  color: Colors.blue,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.green,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.orange,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.purple,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.yellow,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.cyan,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.pink,
+                  height: 250,
+                ),
+                Container(
+                  color: Colors.lime,
+                  height: 250,
                 ),
               ],
             ),
-            Container(
-              width: 300,
-              height: 300,
-              color: Colors.green,
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            ),
-          ],
-        ),
+          ),
+          Image.asset(
+            'assets/foto.jpg', 
+            height: 200, 
+            fit: BoxFit.cover, 
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
